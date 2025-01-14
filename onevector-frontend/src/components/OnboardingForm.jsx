@@ -69,10 +69,10 @@ const [savedResume, setSavedResume] = useState(null);
       const fetchSkillsAndCertifications = async () => {
         setIsLoading(true);
         try {
-          const skillsResponse = await axios.get('http://localhost:3000/api/skills');
+          const skillsResponse = await axios.get('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/skills');
           setSkills(skillsResponse.data.map(skill => skill.skill_name));
     
-          const certificationsResponse = await axios.get('http://localhost:3000/api/certifications');
+          const certificationsResponse = await axios.get('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/certifications');
           setCertifications(certificationsResponse.data.map(cert => cert.certification_name));
         } catch (error) {
           console.error('Error fetching skills and certifications:', error);
@@ -146,7 +146,7 @@ const [savedResume, setSavedResume] = useState(null);
         }
   
         try {
-          const response = await axios.post('http://localhost:3000/api/submit-candidate', formData, {
+          const response = await axios.post('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/submit-candidate', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
