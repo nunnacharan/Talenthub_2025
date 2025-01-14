@@ -509,7 +509,7 @@ isDarkMode ? "bg-gray-800" : "bg-white"
 <Button
 variant="ghost"
 size="sm"
-onClick={() => navigate('/admin-dashboard')}
+onClick={() => navigate('/power-user-dashboard')}
 className={cn(
 "gap-2 px-2 py-1 rounded-md text-sm sm:text-base transition-all",
 isDarkMode
