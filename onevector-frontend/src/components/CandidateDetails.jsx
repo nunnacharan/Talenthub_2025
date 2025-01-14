@@ -70,10 +70,10 @@ const [skills, setSkills] = useState([]);
 useEffect(() => {
   const fetchSkillsAndCertifications = async () => {
       try {
-          const skillsResponse = await axios.get('http://localhost:3000/api/skills');
+          const skillsResponse = await axios.get('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/skills');
           setSkills(skillsResponse.data.map(skill => skill.skill_name));
 
-          const certificationsResponse = await axios.get('http://localhost:3000/api/certifications');
+          const certificationsResponse = await axios.get('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/certifications');
           setCertifications(certificationsResponse.data.map(cert => cert.certification_name));
       } catch (error) {
           console.error('Error fetching skills and certifications:', error);
@@ -92,7 +92,7 @@ useEffect(() => {
 
 const fetchPersonalDetails = async (id) => {
     try {
-        const response = await axios.get(`http://localhost:3000/api/personalDetails/${id}`);
+        const response = await axios.get(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/personalDetails/${id}`);
         const initialData = {
             personalDetails: {
                 ...response.data.personalDetails,
@@ -285,7 +285,7 @@ const handleChange = (e) => {
                 if (resumeFile) {
                     formDataToSubmit.append('resume', resumeFile);
                 }
-                await axios.put(`http://localhost:3000/api/candidates/${id}/personal`, formDataToSubmit, {
+                await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/personal`, formDataToSubmit, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
                 // Update actual data after successful submit
@@ -296,7 +296,7 @@ const handleChange = (e) => {
                 break;
 
             case 'qualifications':
-                await axios.put(`http://localhost:3000/api/candidates/${id}/qualifications`, {
+                await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/qualifications`, {
                     qualifications: draftData.qualifications
                 });
                 // Update actual data after successful submit
@@ -306,13 +306,13 @@ const handleChange = (e) => {
                 }));
                 break;
               case 'skills':
-                  await axios.put(`http://localhost:3000/api/candidates/${id}/skills`, {
+                  await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/skills`, {
                       skills: formData.skills
                   });
                   break;
 
               case 'certifications':
-                  await axios.put(`http://localhost:3000/api/candidates/${id}/certifications`, {
+                  await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/certifications`, {
                       certifications: formData.certifications
                   });
                   break;
@@ -370,7 +370,7 @@ const handleChange = (e) => {
         formData.append('resume', resumeFile);
         
         try {
-            const response = await axios.post('http://localhost:3000/api/uploadResume', formData, {
+            const response = await axios.post('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/uploadResume', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -384,7 +384,7 @@ const handleChange = (e) => {
 
     const handleDownloadResume = async () => {
            try {
-               const resumeUrl = `http://localhost:3000/api/resume/${details.personalDetails.id}`;
+               const resumeUrl = `https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/resume/${details.personalDetails.id}`;
                window.open(resumeUrl, '_blank'); // Opens the resume in a new tab
              } catch (error) {
                alert('Failed to view resume');
