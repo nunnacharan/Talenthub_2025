@@ -155,7 +155,7 @@ const user8=decodedToken.username;
     const fetchPersonalDetails = async (id) => {
         try {
          
-            const response = await axios.get(`http://localhost:3000/api/personalDetails/${id}`);
+            const response = await axios.get(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/personalDetails/${id}`);
             setDetails(response.data);
             setFormData({
                 personalDetails: response.data.personalDetails,
@@ -174,10 +174,10 @@ const user8=decodedToken.username;
     useEffect(() => {
       const fetchSkillsAndCertifications = async () => {
           try {
-              const skillsResponse = await axios.get('http://localhost:3000/api/skills');
+              const skillsResponse = await axios.get('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/skills');
               setSkills(skillsResponse.data.map(skill => skill.skill_name));
     
-              const certificationsResponse = await axios.get('http://localhost:3000/api/certifications');
+              const certificationsResponse = await axios.get('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/certifications');
               setCertifications(certificationsResponse.data.map(cert => cert.certification_name));
           } catch (error) {
               console.error('Error fetching skills and certifications:', error);
@@ -215,7 +215,7 @@ const user8=decodedToken.username;
         setLoading(true);
         setError('');
         try {
-          const response = await axios.get('http://localhost:3000/api/candidates');
+          const response = await axios.get('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates');
           const filteredCandidates = response.data
             .filter((candidate) => candidate.role !== 'admin')
             .sort((a, b) => (a.role === 'power_user' ? -1 : 1));
@@ -248,7 +248,7 @@ const user8=decodedToken.username;
         formData.append('resume', resumeFile);
         
         try {
-            const response = await axios.post('http://localhost:3000/api/uploadResume', formData, {
+            const response = await axios.post('https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/uploadResume', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -262,7 +262,7 @@ const user8=decodedToken.username;
 
     const fetchUserDetails = async (userId) => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/users/${userId}`);
+        const response = await axios.get(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/users/${userId}`);
         console.log(response.data); // Check if user details are returned correctly
         setUserDetails(response.data); // Set the user details in your state
       } catch (error) {
@@ -273,7 +273,7 @@ const user8=decodedToken.username;
 
     const handleDownloadResume = async () => {
            try {
-            const resumeUrl = `http://localhost:3000/api/resume/${details.personalDetails.id}`;
+            const resumeUrl = `https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/resume/${details.personalDetails.id}`;
             window.open(resumeUrl, '_blank'); // Opens the resume in a new tab
           } catch (error) {
             alert('Failed to view resume');
@@ -363,7 +363,7 @@ const handleSubmit = async (e, section) => {
               if (resumeFile) {
                   formDataToSubmit.append('resume', resumeFile);
               }
-              await axios.put(`http://localhost:3000/api/candidates/${id}/personal`, formDataToSubmit, {
+              await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/personal`, formDataToSubmit, {
                   headers: { 'Content-Type': 'multipart/form-data' }
               });
               // Update actual data after successful submit
@@ -374,7 +374,7 @@ const handleSubmit = async (e, section) => {
               break;
 
           case 'qualifications':
-              await axios.put(`http://localhost:3000/api/candidates/${id}/qualifications`, {
+              await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/qualifications`, {
                   qualifications: draftData.qualifications
               });
               // Update actual data after successful submit
@@ -384,13 +384,13 @@ const handleSubmit = async (e, section) => {
               }));
               break;
             case 'skills':
-                await axios.put(`http://localhost:3000/api/candidates/${id}/skills`, {
+                await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/skills`, {
                     skills: formData.skills
                 });
                 break;
 
             case 'certifications':
-                await axios.put(`http://localhost:3000/api/candidates/${id}/certifications`, {
+                await axios.put(`https://5q5faxzgb7.execute-api.ap-south-1.amazonaws.com/api/candidates/${id}/certifications`, {
                     certifications: formData.certifications
                 });
                 break;
