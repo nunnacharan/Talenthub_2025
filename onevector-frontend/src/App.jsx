@@ -29,7 +29,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Login />} />
-          <Route path="/onboard" element={<OnboardingForm />} />
+          <Route path="/onboard/" element={<OnboardingForm />} />
           <Route path="/success" element={<SuccessPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword/>} />
